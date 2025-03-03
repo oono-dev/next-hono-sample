@@ -65,3 +65,26 @@ export const createBlogRoute = createRoute({
     }
   }
 })
+
+export const deleteBlogByIdRoute = createRoute({
+  path: "/{id}",
+  method: "delete",
+  description: "指定したブログを削除",
+  request: {
+    params: BlogIdSchema
+  },
+  responses: {
+    200: {
+      description: "削除成功",
+      content: { "application/json": { schema: BlogSchema } }
+    },
+    404: {
+      description: "ブログが見つかりませんでした。",
+      content: {
+        "application/json": {
+          schema: z.null()
+        }
+      }
+    }
+  }
+})

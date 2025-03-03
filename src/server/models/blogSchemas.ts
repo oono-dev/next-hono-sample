@@ -48,3 +48,8 @@ export const CreateBlogSchema = z.object({
 export type User = z.infer<typeof UserSchema>
 export type Blog = z.infer<typeof BlogSchema>
 export type CreateBlog = z.infer<typeof CreateBlogSchema>
+export const DeleteBlogSchema = z.object({
+  id: z.string().openapi({ example: "1" })
+})
+
+export type DeleteBlog = z.infer<typeof DeleteBlogSchema>
