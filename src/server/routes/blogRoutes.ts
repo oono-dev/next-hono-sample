@@ -1,6 +1,6 @@
 //routes/blogRoutes.ts
 import { createRoute, z } from "@hono/zod-openapi";
-import { BlogIdSchema, BlogSchema, BlogsSchema, CreateBlogSchema } from "../models/blogSchemas";
+import { BlogIdSchema, BlogSchema, BlogsSchema, CreateBlogSchema, EditBlogSchema } from "../models/blogSchemas";
 
 export const getBlogsRoute = createRoute({
   path: "/",
@@ -62,6 +62,30 @@ export const createBlogRoute = createRoute({
           schema: BlogSchema
         }
       }
+    }
+  }
+})
+
+export const editBlogByIdRoute = createRoute({
+  path: "/{id}",
+  method: "put",
+  description: "指定したブログを編集",
+  request: {
+    params: BlogIdSchema,
+    body: {
+      content: {
+        "application/json": { schema: EditBlogSchema }
+      }
+    }
+  },
+  responses: {
+    200: {
+      description: "編集成功",
+      content: { "application/json": { schema: BlogSchema } }
+    },
+    404: {
+      description: "ブログが見つかりませんでした。",
+      content: { "application/json": { schema: z.null() } }
     }
   }
 })

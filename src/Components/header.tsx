@@ -1,6 +1,7 @@
 //components/header.tsx
 import { auth, signIn, signOut } from "@/lib/auth";
 import Link from "next/link";
+import { LogOut } from "lucide-react";
 
 export default async function Header() {
   const session = await auth();
@@ -39,7 +40,7 @@ export default async function Header() {
              transition-all duration-200 ease-in-out 
              active:scale-95"
             >
-              <Link href="/blogs/create">+</Link>
+              <Link href="/blogs/create">新規投稿</Link>
             </button>
             <form
               action={async () => {
@@ -48,13 +49,14 @@ export default async function Header() {
               }}
             >
               <button
+                title="ログアウト"
                 type="submit"
-                className="bg-yellow-300 py-1 px-3 rounded-full font-bold 
-             hover:bg-yellow-400 hover:shadow-md 
+                className="bg-red-300 py-1 px-4 rounded-full font-bold 
+             hover:bg-red-400 hover:shadow-md 
              transition-all duration-200 ease-in-out 
-             active:scale-95"
+             active:scale-95 cursor-pointer"
               >
-                ログアウト
+                <LogOut />
               </button>
             </form>
           </div>

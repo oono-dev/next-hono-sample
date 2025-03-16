@@ -37,14 +37,22 @@ export default function BlogDetail({ blog }: { blog: Blog }) {
           <h1 className="lg:text-xl text-lg font-bold text-gray-800 mb-4">
             {blog.title}
           </h1>
-          <form onSubmit={onSubmit}>
-            <button
-              type="submit"
-              className="bg-red-400 py-2 px-6 rounded-lg cursor-pointer hover:bg-red-500"
+          <div className="flex gap-4">
+            <Link
+              href={`/blogs/${blog.id}/edit`}
+              className="bg-blue-500 text-white py-2 px-6 rounded-lg mb-8 hover:bg-blue-600"
             >
-              削除
-            </button>
-          </form>
+              編集
+            </Link>
+            <form onSubmit={onSubmit}>
+              <button
+                type="submit"
+                className="bg-red-400 py-2 px-6 rounded-lg cursor-pointer hover:bg-red-500"
+              >
+                削除
+              </button>
+            </form>
+          </div>
         </div>
 
         <p className="text-gray-600 lg:text-md text-sm mb-6">{blog.content}</p>
